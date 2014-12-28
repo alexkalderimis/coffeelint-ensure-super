@@ -43,13 +43,14 @@ module.exports = class EnsureSuper
       else debug 'Skipping non method', field.varName
 
   processMethod: (field, api) ->
-    meths = (api.config[@rule.name]?.check ? @rule.check)[field.classInfo.parent]
-    return unless meths?
+    conf = (api.config[@rule.name]?.check ? @rule.check)
+    meths = conf[field.classInfo.parent]
+    return unless meths?.length
     if field.varName in meths
       @checkMethod field, api
 
   checkMethod: (method, api) ->
-    if not method.value.body.expressions.some isSuperCall
+    unless method.value.body.expressions.some isSuperCall
       @errors.push api.createError
         message: "#{ method.varName } must call super"
         lineNumber: method.value.locationData.first_line + 1

@@ -10,5 +10,5 @@ describe 'The source code of this module', ->
   errors = CoffeeLint.lint src
 
   it 'should pass its own rules', ->
-    errors.length.should.eql 0
+    errors.should.eql []
 
