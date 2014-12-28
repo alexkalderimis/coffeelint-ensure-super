@@ -34,6 +34,7 @@ module.exports = class EnsureSuper
       switch child.constructor.name
         when 'Class' then @processClass child, api
         when 'Assign' then @processAssignment child, api, info
+        else debug 'Skipping irrelevant node', child.constructor.name
 
   processAssignment: (binding, api, classInfo) ->
     field = new FieldInfo classInfo, binding
@@ -56,8 +57,10 @@ module.exports = class EnsureSuper
 
   lintNode: (node, api) ->
     node.traverseChildren false, (child) =>
-      switch child.constructor.name
+      type = child.constructor.name
+      switch type
         when 'Class' then @processClass child, api
+        else debug 'Skipping irrelevant node', type
     return # Errors are listed in @errors.
 
   lintAST: (root, api) -> @lintNode root, api
