@@ -1,6 +1,6 @@
 {
   "name": "coffeelint-ensure-super",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Ensure super is called in certain methods.",
   "main": "index.js",
   "scripts": {
