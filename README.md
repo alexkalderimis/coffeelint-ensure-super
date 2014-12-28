@@ -28,7 +28,7 @@ Add the following configuration to `coffeelint.json`:
 
 ```json
 "ensure_super": {
-      "module": "coffeelint-forbidden-keywords",
+      "module": "coffeelint-ensure-super",
       "check": {
         "SuperClassName": ["method1", "method2"],
         "AnotherSuperClass": ["methodX", "methodY"]
@@ -46,7 +46,7 @@ ensuring all Backbone views call `super` on removal would be:
 
 ```json
 "ensure_super": {
-      "module": "coffeelint-forbidden-keywords",
+      "module": "coffeelint-ensure-super",
       "check": {
         "View": ["remove"]
       }
