@@ -14,7 +14,9 @@ class FieldInfo
     @value = binding.value
 
 isSuperCall = (expr) ->
-  (expr.constructor.name is 'Call') and expr.isSuper
+  expr.constructor.name is 'SuperCall' or
+    # CoffeeScript <1.10.0 support
+    (expr.constructor.name is 'Call') and (expr.isSuper? and expr.isSuper)
 
 module.exports = class EnsureSuper
 
